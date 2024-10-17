@@ -1,0 +1,32 @@
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\bin\Debug\net6.0-windows\CHESS.exe
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\bin\Debug\net6.0-windows\CHESS.deps.json
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\bin\Debug\net6.0-windows\CHESS.runtimeconfig.json
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\bin\Debug\net6.0-windows\CHESS.dll
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\bin\Debug\net6.0-windows\CHESS.pdb
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\obj\Debug\net6.0-windows\CHESS.chess.resources
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\obj\Debug\net6.0-windows\CHESS.csproj.GenerateResource.cache
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\obj\Debug\net6.0-windows\CHESS.GeneratedMSBuildEditorConfig.editorconfig
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\obj\Debug\net6.0-windows\CHESS.AssemblyInfoInputs.cache
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\obj\Debug\net6.0-windows\CHESS.AssemblyInfo.cs
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\obj\Debug\net6.0-windows\CHESS.csproj.CoreCompileInputs.cache
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\obj\Debug\net6.0-windows\CHESS.dll
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\obj\Debug\net6.0-windows\refint\CHESS.dll
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\obj\Debug\net6.0-windows\CHESS.pdb
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\obj\Debug\net6.0-windows\CHESS.genruntimeconfig.cache
+C:\שולחן העבודה\OOP practice\WFA testing\New folder\CHESS\obj\Debug\net6.0-windows\ref\CHESS.dll
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\bin\Debug\net6.0-windows\CHESS.exe
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\bin\Debug\net6.0-windows\CHESS.deps.json
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\bin\Debug\net6.0-windows\CHESS.runtimeconfig.json
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\bin\Debug\net6.0-windows\CHESS.dll
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\bin\Debug\net6.0-windows\CHESS.pdb
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\CHESS.chess.resources
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\CHESS.csproj.GenerateResource.cache
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\CHESS.GeneratedMSBuildEditorConfig.editorconfig
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\CHESS.AssemblyInfoInputs.cache
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\CHESS.AssemblyInfo.cs
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\CHESS.csproj.CoreCompileInputs.cache
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\CHESS.dll
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\refint\CHESS.dll
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\CHESS.pdb
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\CHESS.genruntimeconfig.cache
+C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\ref\CHESS.dll

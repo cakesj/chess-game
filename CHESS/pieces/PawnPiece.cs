@@ -23,15 +23,13 @@ namespace CHESS.pieces
 
         private void AddMovementsWHT()
         {
-            this.movementsDict.Add(PawnSingleMovement.MoveWHT, false);
-            this.movementsDict.Add(PawnDoubleMovement.MoveWHT, false);
-            this.movementsDict.Add(PawnDiagonalMovement.MoveWHT, false);
+            this.movementsDict.Add(PawnSingleMovement.MoveWHT, 2);
+            this.movementsDict.Add(PawnDiagonalMovement.MoveWHT, 1);
         }
         private void AddMovementsBLK()
         {
-            this.movementsDict.Add(PawnSingleMovement.MoveBLK, false);
-            this.movementsDict.Add(PawnDoubleMovement.MoveBLK, false);
-            this.movementsDict.Add(PawnDiagonalMovement.MoveBLK, false);
+            this.movementsDict.Add(PawnSingleMovement.MoveBLK, 2);
+            this.movementsDict.Add(PawnDiagonalMovement.MoveBLK, 1);
         }
 
         internal override void UpdateBoard(int col, int row)
@@ -48,34 +46,35 @@ namespace CHESS.pieces
 
         internal override void MovePiece(int col, int row)
         {
-            NegateDoubles();
+            int[] previous = (int[])this.placement.Clone();
             bool canPawnPessant = chess.GetPiece(col, row) == null;
-            bool willPawnPessant = (Math.Abs(col - this.placement[0])) == 1 && Math.Abs(row - this.placement[1]) == 1;
-            if (!canPawnPessant || !willPawnPessant)
-            {
-                base.MovePiece(col, row);
-                chess.Promote(col, row, PawnPiece.PromoteLines);
-                return;
-            }
+            bool willPawnPessant = (Math.Abs(col - previous[0])) == 1 && Math.Abs(row - previous[1]) == 1;
+            base.MovePiece(col, row);
+            chess.Promote(col, row, PawnPiece.PromoteLines);
+            NegateDoubles();
+            if (!(canPawnPessant && willPawnPessant)) { return; }
 
             // if here it's pessanting
 
-            this.UpdateBoard(col, this.placement[1]);
-            this.UpdateBoard(col, row);
+            chess.RemovePiece(col, previous[1]);
+            chess.GetChessSquare(col, previous[1]).UpdateSquareHoldings(null, null);
             chess.ClearCalculatedMovableSpaces();
-            MessageAbout(true);
             string PessantMessage = "Pessanting!";
-            PessantMessage = "ah I see you are a man of culture as well 🤓"; // can make into a comment if it's annoying
+            //PessantMessage = "ah I see you are a man of culture as well 🤓"; // can make into a comment if it's annoying
             MessageBox.Show(PessantMessage);
         }
 
         private void NegateDoubles()
         {
-            if (!hasMoved)
+            if (this.pieceColor == PieceColor.WHT)
             {
-                this.movementsDict.Remove(PawnDoubleMovement.MoveWHT);
-                this.movementsDict.Remove(PawnDoubleMovement.MoveBLK);
+                this.movementsDict[PawnSingleMovement.MoveWHT] = 1;
             }
+            else
+            {
+                this.movementsDict[PawnSingleMovement.MoveBLK] = 1;
+            }
+
         }
 
         internal override bool IsEatTo(int col, int row)

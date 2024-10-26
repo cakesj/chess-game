@@ -11,24 +11,13 @@ namespace CHESS.pieces
     {
         internal KingPiece(PieceColor pieceColor, int col, int row) : base(pieceColor, col, row)
         {
-            this.movementsDict.Add(DiagonalMovement.Move, false);
-            this.movementsDict.Add(HorisontalMovement.Move, false);
-            this.movementsDict.Add(CastlingMovement.Move, false);
-            // need to add castling
+            this.movementsDict.Add(DiagonalMovement.Move, 1);
+            this.movementsDict.Add(HorisontalMovement.Move, 1);
+            this.movementsDict.Add(CastlingMovement.Move, 1);
             this.portrait = Image.FromFile($"..\\..\\..\\Resources\\{pieceColor}_king.png");
             this.UpdateBoard(col, row);
         }
-        internal override void GenerateMovableSpaces()
-        {
-            foreach (Movement movement in movementsDict.Keys)
-            {
-                foreach (int[] target in movement.GetMoves(placement, movementsDict[movement]))
-                {
-                    if (chess.IsSafe(target, this.pieceColor)) { possibleMoves.Add(target); }
-                }
-                
-            }
-        }
+
 
         internal override void MovePiece(int col, int row)
         {
@@ -37,7 +26,6 @@ namespace CHESS.pieces
             int SoonToBePrevious = this.placement[0];
             base.MovePiece(col, row);
             if (Math.Abs(colDistance) <= 1) { return; }
-            if (!(this.placement[0] == col) || !(this.placement[1] == row)) { return; }
 
             // if here it's castling
 
@@ -45,10 +33,12 @@ namespace CHESS.pieces
             if (colDistance > 0) { Castle = chess.GetPiece(0, row); }
             else { Castle = chess.GetPiece(chess.GetMaxWidth(), row); }
             Castle.UpdateBoard((SoonToBePrevious + this.placement[0]) / 2, row);
-            string CastleMessege = "Castling!";
-            CastleMessege = "everyday im castlin😎"; // can make into a comment if it's annoying
-            MessageBox.Show(CastleMessege);
+            chess.ClearCalculatedMovableSpaces();
+            string Castlemessage = "Castling!";
+            //Castlemessage = "everyday im castlin😎"; // can make into a comment if it's annoying
+            MessageBox.Show(Castlemessage);
         }
+
         internal override bool IsEatTo(int col, int row)
         {
             if (Math.Abs(this.placement[0] - col) > 1) { return false; }

@@ -8,4 +8,77 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="obj\Debug\net6.0-windows\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net6.0-windows\CHESS.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net6.0-windows\CHESS.GlobalUsings.g.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\fsmonitor-watchman.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-merge-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\push-to-checkout.sample" />
+    <None Include=".git\hooks\sendemail-validate.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\info\exclude" />
+    <None Include=".vs\CHESS\DesignTimeBuild\.dtbcache.v2" />
+    <None Include=".vs\CHESS\FileContentIndex\001fdb25-9166-45e0-acb7-3005a9a752d8.vsidx" />
+    <None Include=".vs\CHESS\FileContentIndex\1b8a8b26-26b5-400e-a733-3922fc22a2d9.vsidx" />
+    <None Include=".vs\CHESS\FileContentIndex\6a1ccc62-65ee-45b8-b6d8-931ab4d2bf3a.vsidx" />
+    <None Include=".vs\CHESS\FileContentIndex\893c206f-7b0e-4342-988c-c0f574aaefea.vsidx" />
+    <None Include=".vs\CHESS\FileContentIndex\fe22cd08-5318-4708-8c32-c3c8704c4104.vsidx" />
+    <None Include=".vs\CHESS\v17\.futdcache.v2" />
+    <None Include=".vs\ProjectEvaluation\chess.metadata.v7.bin" />
+    <None Include=".vs\ProjectEvaluation\chess.projects.v7.bin" />
+    <None Include="bin\Debug\net6.0-windows\CHESS.deps.json" />
+    <None Include="bin\Debug\net6.0-windows\CHESS.dll" />
+    <None Include="bin\Debug\net6.0-windows\CHESS.exe" />
+    <None Include="bin\Debug\net6.0-windows\CHESS.pdb" />
+    <None Include="bin\Debug\net6.0-windows\CHESS.runtimeconfig.json" />
+    <None Include="CHESS.csproj" />
+    <None Include="CHESS.csproj.user" />
+    <None Include="CHESS.sln" />
+    <None Include="obj\CHESS.csproj.nuget.dgspec.json" />
+    <None Include="obj\CHESS.csproj.nuget.g.props" />
+    <None Include="obj\CHESS.csproj.nuget.g.targets" />
+    <None Include="obj\Debug\.AssemblyReference.cache" />
+    <None Include="obj\Debug\net6.0-windows\apphost.exe" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.assets.cache" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.chess.resources" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.csproj.FileListAbsolute.txt" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.designer.deps.json" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.designer.runtimeconfig.json" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.dll" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net6.0-windows\CHESS.pdb" />
+    <None Include="obj\Debug\net6.0-windows\refint\CHESS.dll" />
+    <None Include="obj\Debug\net6.0-windows\ref\CHESS.dll" />
+    <None Include="obj\project.assets.json" />
+    <None Include="obj\project.nuget.cache" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\objects\pack\" />
+    <Folder Include=".git\refs\heads\" />
+    <Folder Include=".git\refs\tags\" />
+  </ItemGroup>
+
 </Project>

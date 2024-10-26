@@ -1,6 +1,6 @@
 ﻿namespace CHESS.pieces.Movements.PawnMoves
 {
-    internal class PawnDiagonalMovement : PawnMovement
+    internal class PawnDiagonalMovement : DirectionalMovement
     {
         static int[][] directions = new int[][]
         {
@@ -11,51 +11,35 @@
         static internal PawnDiagonalMovement MoveBLK = new PawnDiagonalMovement(PieceColor.BLK);
         public PawnDiagonalMovement(PieceColor pieceColor) : base(directions, pieceColor) { }
 
-        internal override List<int[]> GetMoves(int[] origin, bool Useless)
+        internal override List<int[]> GetMoves(int[] origin, int repeat) // in diagonal pawn movement it should always be 1
         {
-            return new List<int[]> {
-                this.MoveToTheRight(origin),
-                this.MoveToTheLeft(origin)
-            }.Where(item => item != null).ToList();
+            PieceColor color = chess.GetPiece(origin).pieceColor;
+            List<int[]> positions = base.GetMoves(origin, repeat);
+            foreach (int[] position in new List<int[]>(positions))
+            {
+                Piece? sider = chess.GetPiece(position[0], origin[1]);
+                if (!IsPossibleMove(position, color, sider)) { positions.Remove(position); }
+            }
+            return positions;
         }
 
-        internal int[]? MoveToTheRight(int[] origin)
+        internal bool IsPossibleMove(int[] target, PieceColor color, Piece? sider)
         {
-            int[] target = AddCoordinates(origin, movement[0]);
-            PieceColor color = chess.GetPiece(origin).pieceColor;
-            Piece? onTheRight = chess.GetPiece(target[0], origin[1]);
-            if (CanPessant(onTheRight, color))
-            {
-                return target;
-            }
-            if (!IsSquareFree(target) && IsSquareAvailable(color, target)) {
-                return target;
-            }
-            return null;
-        }
-        internal int[]? MoveToTheLeft(int[] origin)
-        {
-            int[] target = AddCoordinates(origin, movement[1]);
-            PieceColor color = chess.GetPiece(origin).pieceColor;
-            Piece? onTheLeft = chess.GetPiece(target[0], origin[1]);
-            if (CanPessant(onTheLeft, color))
-            {
-                return target;
-            }
-            if (!IsSquareFree(target) && IsSquareAvailable(color, target)) {
-                return target;
-            }
-            return null;
+            if (CanPessant(sider, color)) 
+            { return true; }
+            if (!IsSquareFree(target) && IsSquareAvailable(color, target))
+            { return true; }
+            return false;
         }
 
-        internal static bool CanPessant(Piece? OnTheSide, PieceColor originColor)
+        internal static bool CanPessant(Piece? onTheSide, PieceColor originColor)
         {
-            if (OnTheSide != null && 
-                OnTheSide.GetType() == typeof(PawnPiece) && 
-                OnTheSide.pieceColor != originColor)
+            if (onTheSide is PawnPiece &&
+                onTheSide == chess.LastPieceMoved &&
+                onTheSide.pieceColor != originColor)
             {
-                PawnPiece Sider = (PawnPiece)OnTheSide;
-                return Sider.passantable;
+                PawnPiece sider = (PawnPiece)onTheSide;
+                return sider.passantable;
             }
             return false;
         }

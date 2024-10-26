@@ -44,28 +44,41 @@ namespace CHESS.board
             }
         }
 
-        internal void SquareClick(int colIndex, int rowIndex)
+        internal void SquareClick(int colIndex, int rowIndex) { SquareClick(); } // may delete cuz it's not needed
+        internal void SquareClick()
         {
-            if (this.state == SquareState.Highlighted)
+            SquareState CurrentState = this.state;
+            chess.ClearHighlightsOnBoard();
+            switch (CurrentState)
             {
-                chess.LastPieceClicked.MovePiece(this.col, this.row);
-                chess.ClearHighlightsOnBoard();
+                case (SquareState.Active):
+                    this.state = SquareState.Inactive;
+                    break;
+                case (SquareState.Highlighted):
+                    MovePieceFromSquare();
+                    break;
+                case SquareState.Inactive:
+                    ActivatePieceFromSquare();
+                    break;
             }
-            else
+        }
+        internal void MovePieceFromSquare()
+        {
+            chess.LastPieceMoved = chess.LastPieceClicked;
+            chess.LastPieceClicked.MovePiece(this.col, this.row);
+            chess.TurnColor = chess.TurnColor.Oppisite();
+            chess.ClearCalculatedMovableSpaces();
+        }
+        internal void ActivatePieceFromSquare()
+        {
+            //Piece held = this.pieceHeld;
+            //int[] KingCoordinates = chess.GetKing(held.pieceColor).placement;
+            if (chess.IsTurn(this.pieceHeld))
             {
-                chess.ClearHighlightsOnBoard();
-                if (this.state == SquareState.Active) { this.state = SquareState.Inactive; }
-                else if (this.state == SquareState.Inactive && pieceHeld != null)
-                {
-                    chess.LastPieceClicked = pieceHeld;
-                    this.state = SquareState.Active;
-                    this.HighlightPiecesPossibilities(pieceHeld);
-                }
+                chess.LastPieceClicked = pieceHeld;
+                this.state = SquareState.Active;
+                this.HighlightPiecesPossibilities(pieceHeld);
             }
-
-
-
-
         }
 
         internal void HighlightPiecesPossibilities(Piece piece)
@@ -73,7 +86,7 @@ namespace CHESS.board
             piece.GenerateMovableSpaces();
             foreach (int[] SquareCoordinates in piece.possibleMoves)
             {
-                chess.boardSquares[SquareCoordinates[0]][SquareCoordinates[1]].HighLightSquare();
+                chess.GetChessSquare(SquareCoordinates).HighLightSquare();
             }
         }
         internal void HighLightSquare()
@@ -91,6 +104,13 @@ namespace CHESS.board
         {
             this.pieceHeld = piece;
             this.Image = portrait;
+        }
+
+        internal Piece? TempUpdateSquareHoldings(Piece? piece)
+        {
+            Piece? evacuated = this.pieceHeld;
+            this.pieceHeld = piece;
+            return evacuated;
         }
     }
 }

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\שולחן העבודה\\OOP practice\\WFA testing\\Games\\CHESS\\CHESS.csproj",
+      "projectUniqueName": "C:\\Users\\zvtuh\\source\\repos\\chess-game\\CHESS\\CHESS.csproj",
       "projectName": "CHESS",
-      "projectPath": "C:\\שולחן העבודה\\OOP practice\\WFA testing\\Games\\CHESS\\CHESS.csproj",
+      "projectPath": "C:\\Users\\zvtuh\\source\\repos\\chess-game\\CHESS\\CHESS.csproj",
       "packagesPath": "C:\\Users\\zvtuh\\.nuget\\packages\\",
-      "outputPath": "C:\\שולחן העבודה\\OOP practice\\WFA testing\\Games\\CHESS\\obj\\",
+      "outputPath": "C:\\Users\\zvtuh\\source\\repos\\chess-game\\CHESS\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

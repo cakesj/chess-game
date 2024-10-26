@@ -11,7 +11,7 @@ namespace CHESS.pieces
     {
         internal BishopPiece(PieceColor pieceColor, int col, int row) : base(pieceColor, col, row)
         {
-            this.movementsDict.Add(DiagonalMovement.Move, true);
+            this.movementsDict.Add(DiagonalMovement.Move, -1);
 
             this.portrait = Image.FromFile($"..\\..\\..\\Resources\\{pieceColor}_bishop.png");
             this.UpdateBoard(col, row);

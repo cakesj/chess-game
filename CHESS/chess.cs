@@ -15,6 +15,8 @@ namespace CHESS
         internal static List<Piece> AwayPieces = new List<Piece>(); // do I need it? better be safe
         internal static ChessSquarePictureBox[][] boardSquares;
         internal static Piece? LastPieceClicked;
+        internal static Piece? LastPieceMoved;
+        internal static PieceColor TurnColor = PieceColor.WHT;
 
         public chess()
         {
@@ -30,9 +32,7 @@ namespace CHESS
 
 
         // priority list:
-        // force moves to be alternating if debugmode is false
-        // do a check / checkmate checker + winning screen
-        // work on IsEat on protected pieces by allies
+        // do a winning screen (check if everybody can't move)
         // add a game log to that?
         // add dead pieces to the outside of the board
         // add AI??? the next link seems like it could help make:
@@ -58,7 +58,7 @@ namespace CHESS
                     {
                         strong = "BLK";
                     }
-                    chess.boardSquares[x][i].Image = Image.FromFile($"..\\..\\..\\Resources\\{strong}_{str}.png");
+                    chess.GetChessSquare(x, i).Image = Image.FromFile($"..\\..\\..\\Resources\\{strong}_{str}.png");
                 }
             }
         }
@@ -83,10 +83,10 @@ namespace CHESS
             Piece WHTbishop2 = new BishopPiece(PieceColor.WHT, 2, 7);
             Piece BLKbishop1 = new BishopPiece(PieceColor.BLK, 5, 0);
             Piece BLKbishop2 = new BishopPiece(PieceColor.BLK, 2, 0);
-            Piece WHTking = new KingPiece(PieceColor.WHT, 3, 7);
-            Piece BLKking = new KingPiece(PieceColor.BLK, 3, 0);
             Piece WHTqueen = new QueenPiece(PieceColor.WHT, 4, 7);
             Piece BLKqueen = new QueenPiece(PieceColor.BLK, 4, 0);
+            Piece WHTking = new KingPiece(PieceColor.WHT, 3, 7);
+            Piece BLKking = new KingPiece(PieceColor.BLK, 3, 0);
         }
 
         internal static void ClearCalculatedMovableSpaces()
@@ -129,14 +129,14 @@ namespace CHESS
         internal static void Promote(int col, int row, int[] promotionFiles)
         {
             if (!promotionFiles.Contains(row)) { return; }
-            PieceColor previous = chess.boardSquares[col][row].pieceHeld.pieceColor;
+            PieceColor previous = chess.GetPiece(col, row).pieceColor;
             Piece newer;
 
             promotionPicker.ShowDialog(new string[] { "bishop", "knight", "rook", "queen" }, previous);
             string piecePick = promotionPicker.UserResponse;
 
             chess.RemovePiece(col, row);
-            chess.boardSquares[col][row].UpdateSquareHoldings(null, null);
+            chess.GetChessSquare(col, row).UpdateSquareHoldings(null, null);
             switch (piecePick)
             {
                 case "bishop":
@@ -153,14 +153,39 @@ namespace CHESS
                     break;
             }
         }
+        internal static KingPiece[] GetKings()
+        {
+            KingPiece[] Kings = new KingPiece[] { GetKing(PieceColor.WHT), GetKing(PieceColor.BLK) };
+            return Kings.Where(item => item != null).ToArray();
+        }
+
+        internal static KingPiece? GetKing(PieceColor searchedColor)
+        {
+            foreach (Piece piece in chess.boardPieces)
+            {
+                if (piece is KingPiece && piece.pieceColor == searchedColor)
+                {
+                    return (KingPiece)piece;
+                }
+            }
+            return null;
+        }
         internal static Piece? GetPiece(int col, int row)
         {
-            if (chess.IsOnBoard(col, row)) { return chess.boardSquares[col][row].pieceHeld; }
+            if (chess.IsOnBoard(col, row)) { return chess.GetChessSquare(col, row).pieceHeld; }
             else { return null; }
         }
         internal static Piece? GetPiece(int[] directions)
         {
-            return chess.GetPiece(directions[0], directions[1]);
+            return chess.GetChessSquare(directions[0], directions[1]).pieceHeld;
+        }
+        internal static ChessSquarePictureBox GetChessSquare(int col, int row)
+        {
+            return chess.boardSquares[col][row];
+        }
+        internal static ChessSquarePictureBox GetChessSquare(int[] directions)
+        {
+            return chess.boardSquares[directions[0]][directions[1]];
         }
         internal static void RemovePiece(int col, int row)
         {
@@ -171,17 +196,44 @@ namespace CHESS
             chess.AwayPieces.Add(piece);
         }
 
+        internal static bool IsTurn(Piece? piece)
+        {
+            bool IsPiece = piece != null;
+            if (chess.DebugMode) { return IsPiece; }
+            return IsPiece && piece.pieceColor == chess.TurnColor;
+        }
         internal static bool IsSafe(int row, int col, PieceColor SafeColor)
         {
             foreach (Piece piece in chess.boardPieces)
             {
                 if (piece.pieceColor == SafeColor) { continue; }
-                if (piece.IsEatTo(row, col)) { return false; }
+                if (piece.IsEatTo(row, col)) { return false; } 
             }
             return true;
         }
         internal static bool IsSafe(int[] target, PieceColor SafeColor)
         { return chess.IsSafe(target[0], target[1], SafeColor); }
+
+
+        internal static bool IsCheck(PieceColor searchedColor) // need to update
+        {
+            KingPiece king = chess.GetKing(searchedColor);
+            return !chess.IsSafe(king.placement, king.pieceColor);
+        }
+
+
+
+        internal static bool IsCheckmate(PieceColor searchedColor)
+        {
+            foreach (Piece piece in chess.boardPieces)
+            {
+                if (piece.pieceColor != searchedColor) { continue; }
+                piece.ClearMovableSpaces();
+                piece.GenerateMovableSpaces();
+                if (piece.possibleMoves.Count != 0) { return false; }
+            }
+            return true;
+        }
         internal static bool IsOnBoard(int col, int row)
         {
             return 0 <= col && col <= chess.GetMaxHeight() && 0 <= row && row <= chess.GetMaxWidth();
@@ -193,6 +245,14 @@ namespace CHESS
         internal static int GetMaxWidth()
         {
             return chess.BOARDWIDTH - 1;
+        }
+        internal static void MessageAbout(string Message)
+        {
+            if (chess.CanTalk)
+            {
+                MessageBox.Show(Message);
+                return;
+            }
         }
 
     }

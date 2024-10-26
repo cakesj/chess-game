@@ -12,7 +12,7 @@ namespace CHESS.pieces
     {
         internal RookPiece(PieceColor pieceColor, int col, int row) : base(pieceColor, col, row)
         {
-            this.movementsDict.Add(HorisontalMovement.Move, true);
+            this.movementsDict.Add(HorisontalMovement.Move, -1);
 
             this.portrait = Image.FromFile($"..\\..\\..\\Resources\\{pieceColor}_rook.png");
             this.UpdateBoard(col, row);

@@ -19,9 +19,9 @@ namespace CHESS.pieces.Movements
             };
 
         internal HorisontalMovement() : base() { }
-        internal override List<int[]> GetMoves(int[] origin, bool repeat)
+        internal override List<int[]> GetMoves(int[] origin, int repeat)
         {
-            return MoveRegular(origin, HorisontalMovement.directions, repeat);
+            return GetMoves(origin, HorisontalMovement.directions, repeat);
         }
 
     }

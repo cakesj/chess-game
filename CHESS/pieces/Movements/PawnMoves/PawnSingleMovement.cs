@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace CHESS.pieces.Movements.PawnMoves
 {
-    internal class PawnSingleMovement : PawnMovement
+    internal class PawnSingleMovement : DirectionalMovement
     {
+        protected int[][] movement;
+
         static int[][] directions = new int[][]
         {
             new int[] { 0, -1 }
@@ -16,14 +18,18 @@ namespace CHESS.pieces.Movements.PawnMoves
         static internal PawnSingleMovement MoveBLK = new PawnSingleMovement(PieceColor.BLK);
         public PawnSingleMovement(PieceColor pieceColor) : base(directions, pieceColor) { }
 
-        internal override List<int[]> GetMoves(int[] origin, bool Useless)
+        internal override List<int[]> GetMoves(int[] origin, int repeat)
         {
-            int[] target = AddCoordinates(origin, movement[0]);
-            return base.GetMoves(
-                target, 
-                IsSquareFree(target)
-                );
+            List<int[]> positions = base.GetMoves(origin, repeat);
+            int LastItemIndex = positions.Count - 1;
+            if (LastItemIndex >= 0 && !IsSquareFree(positions[LastItemIndex]))
+            {
+                positions.Remove(positions[LastItemIndex]);
+            }
+            return positions;
         }
 
     }
 }
+
+

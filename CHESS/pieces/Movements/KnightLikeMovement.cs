@@ -24,9 +24,9 @@ namespace CHESS.pieces.Movements
 
         internal KnightLikeMovement() : base() { }
 
-        internal override List<int[]> GetMoves(int[] origin, bool repeat)
+        internal override List<int[]> GetMoves(int[] origin, int repeat)
         {
-            return MoveRegular(origin, KnightLikeMovement.directions, repeat);
+            return GetMoves(origin, KnightLikeMovement.directions, repeat);
         }
 
     }

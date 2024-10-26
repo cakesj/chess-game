@@ -15,7 +15,7 @@ namespace CHESS.pieces.Movements
         private static readonly int[][] directionRight = new int[][] { new int[] {2, 0}, }; 
 
         internal CastlingMovement() : base() { }
-        internal override List<int[]> GetMoves(int[] origin, bool repeat)
+        internal override List<int[]> GetMoves(int[] origin, int repeat)
         {
             List<int[]> returner = new List<int[]>();
             if (chess.GetPiece(origin).hasMoved) { return returner; }
@@ -32,27 +32,27 @@ namespace CHESS.pieces.Movements
             PieceColor SafeColor = chess.GetPiece(origin).pieceColor;
             for (int i = origin[0] - 1; i > 0; i--)
             {
-                if (!base.IsSquareFree(i, origin[1])) { MessegeSquareDeclare("unfree"); return new List<int[]>(); }
-                if (!chess.IsSafe(i, origin[1], SafeColor)) { MessegeSquareDeclare("unsafe");  return new List<int[]>(); }
+                if (!base.IsSquareFree(i, origin[1])) { MessageSquareDeclare("unfree"); return new List<int[]>(); }
+                if (!chess.IsSafe(i, origin[1], SafeColor)) { MessageSquareDeclare("unsafe");  return new List<int[]>(); }
             }
-            return MoveRegular(origin, CastlingMovement.directionLeft, false);
+            return GetMoves(origin, CastlingMovement.directionLeft, 1);
         }
         private List<int[]> MoveRegularRight(int[] origin)
         {
             PieceColor SafeColor = chess.GetPiece(origin).pieceColor;
             for (int i = origin[0] + 1; i < chess.GetMaxWidth(); i++)
             {
-                if (!base.IsSquareFree(i, origin[1])) { MessegeSquareDeclare("unfree"); return new List<int[]>(); }
-                if (!chess.IsSafe(i, origin[1], SafeColor)) { MessegeSquareDeclare("unsafe"); return new List<int[]>(); }
+                if (!base.IsSquareFree(i, origin[1])) { MessageSquareDeclare("unfree"); return new List<int[]>(); }
+                if (!chess.IsSafe(i, origin[1], SafeColor)) { MessageSquareDeclare("unsafe"); return new List<int[]>(); }
             }
-            return MoveRegular(origin, CastlingMovement.directionRight, false);
+            return GetMoves(origin, CastlingMovement.directionRight, 1);
         }
 
-        private static void MessegeSquareDeclare(string message)
+        private static void MessageSquareDeclare(string message)
         {
-            if (chess.CanTalk)
+            if (chess.DebugMode)
             {
-                MessageBox.Show(message);
+                chess.MessageAbout(message);
             }
         }
     }

@@ -9,7 +9,7 @@ namespace CHESS.pieces.Movements
 {
     internal abstract class Movement
     {
-        internal abstract List<int[]> GetMoves(int[] origin, bool repeat);
+        internal abstract List<int[]> GetMoves(int[] origin, int repeat);
 
         protected bool IsSquareAvailable(int col, int row, PieceColor pieceColor)
         {
@@ -37,73 +37,58 @@ namespace CHESS.pieces.Movements
         }
 
 
-        protected List<int[]> MoveRegular(int[] origin, int[][] directions, bool reapeat)
+        protected List<int[]> GetMoves(int[] origin, int[][] directions, int repetitions)
         {
             List<int[]> returnedList = new List<int[]>();
+            if (this is KnightLikeMovement) { 
+           // MessageBox.Show($"{origin[0]}a{origin[1]}\t{chess.GetPiece(origin)}");
+            }
             PieceColor pieceColor = chess.GetPiece(origin).pieceColor;
             foreach (int[] direction in directions) 
             {
                 int[] target = new int[] { origin[0] + direction[0], origin[1] + direction[1] };
-                if (reapeat)
-                {
-                    returnedList.AddRange(GenerateRepeatedMovesRegular(pieceColor, target, direction));
-                    if (returnedList.Count > 0 ) { target = returnedList[returnedList.Count - 1]; }
-                    else { target = origin; }
-                }
-                else
-                {
-                    int[]? extension;
-                    if ((extension = GenerateUnrepeatedMovesRegular(pieceColor, target)) != null) { returnedList.Add(extension); }
-                }
+                returnedList.AddRange(GenerateMoves(pieceColor, target, direction, repetitions));
+                if (returnedList.Count > 0 ) { target = returnedList[returnedList.Count - 1]; }
+                else { target = origin; }
                 CallPoint(origin, target);
             }
 
             return returnedList;
         }
 
-        private List<int[]> GenerateRepeatedMovesRegular(PieceColor pieceColor, int[] target, int[] direction)
+        private List<int[]> GenerateMoves(PieceColor pieceColor, int[] target, int[] direction, int repetitions)
         {
             List<int[]> ReturnedList = new List<int[]>();
-            while (this.IsSquareAvailable(pieceColor, target))
+            int count = repetitions;
+            while (this.IsSquareAvailable(pieceColor, target) && count != 0)
             {
                 ReturnedList.Add(target); 
-                if (chess.boardSquares[target[0]][target[1]].pieceHeld != null)
+                if (chess.GetPiece(target) != null)
                 {
                     break;
                 }
-                target = AddCoordinates(target, direction); 
-
+                target = AddCoordinates(target, direction);
+                count--;
             }
             return ReturnedList;
-        }
-
-        protected int[]? GenerateUnrepeatedMovesRegular(PieceColor pieceColor, int[] target)
-        {
-            if (this.IsSquareAvailable(pieceColor, target))
-            {
-                return target;
-            }
-            return null;
         }
 
         protected int[] AddCoordinates(int[] origin, int directionCol, int directionRow)
         {
             return new int[] { origin[0] + directionCol, origin[1] + directionRow };
         }
-
         protected int[] AddCoordinates(int[] origin, int[] direction)
         {
             return new int[] { origin[0] + direction[0], origin[1] + direction[1] };
         }
 
-        private static void CallPoint(int[] origin, int[] target)
+        protected static void CallPoint(int[] origin, int[] target)
         {
-            if (chess.DebugMode)
+            if (chess.DebugMode && chess.CanTalk)
             {
                 MessageBox.Show($"({origin[0]}, {origin[1]}) -> ({target[0]}, {target[1]})");
             }
         }
-
 
     }
 }

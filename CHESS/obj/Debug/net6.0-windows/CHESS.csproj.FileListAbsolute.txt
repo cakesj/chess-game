@@ -30,3 +30,19 @@ C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0
 C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\CHESS.pdb
 C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\CHESS.genruntimeconfig.cache
 C:\שולחן העבודה\OOP practice\WFA testing\Games\CHESS\obj\Debug\net6.0-windows\ref\CHESS.dll
+C:\Users\zvtuh\source\repos\chess-game\CHESS\bin\Debug\net6.0-windows\CHESS.exe
+C:\Users\zvtuh\source\repos\chess-game\CHESS\bin\Debug\net6.0-windows\CHESS.deps.json
+C:\Users\zvtuh\source\repos\chess-game\CHESS\bin\Debug\net6.0-windows\CHESS.runtimeconfig.json
+C:\Users\zvtuh\source\repos\chess-game\CHESS\bin\Debug\net6.0-windows\CHESS.dll
+C:\Users\zvtuh\source\repos\chess-game\CHESS\bin\Debug\net6.0-windows\CHESS.pdb
+C:\Users\zvtuh\source\repos\chess-game\CHESS\obj\Debug\net6.0-windows\CHESS.chess.resources
+C:\Users\zvtuh\source\repos\chess-game\CHESS\obj\Debug\net6.0-windows\CHESS.csproj.GenerateResource.cache
+C:\Users\zvtuh\source\repos\chess-game\CHESS\obj\Debug\net6.0-windows\CHESS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zvtuh\source\repos\chess-game\CHESS\obj\Debug\net6.0-windows\CHESS.AssemblyInfoInputs.cache
+C:\Users\zvtuh\source\repos\chess-game\CHESS\obj\Debug\net6.0-windows\CHESS.AssemblyInfo.cs
+C:\Users\zvtuh\source\repos\chess-game\CHESS\obj\Debug\net6.0-windows\CHESS.csproj.CoreCompileInputs.cache
+C:\Users\zvtuh\source\repos\chess-game\CHESS\obj\Debug\net6.0-windows\CHESS.dll
+C:\Users\zvtuh\source\repos\chess-game\CHESS\obj\Debug\net6.0-windows\refint\CHESS.dll
+C:\Users\zvtuh\source\repos\chess-game\CHESS\obj\Debug\net6.0-windows\CHESS.pdb
+C:\Users\zvtuh\source\repos\chess-game\CHESS\obj\Debug\net6.0-windows\CHESS.genruntimeconfig.cache
+C:\Users\zvtuh\source\repos\chess-game\CHESS\obj\Debug\net6.0-windows\ref\CHESS.dll

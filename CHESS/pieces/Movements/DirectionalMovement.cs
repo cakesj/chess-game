@@ -21,10 +21,10 @@ namespace CHESS.pieces.Movements
         private void SetDirection(int[][] directions, PieceColor pieceColor)
         {
             this.movement = directions;
-            if (pieceColor == PieceColor.BLK) { this.movement = Oppisite(directions); }
+            if (pieceColor == PieceColor.BLK) { this.movement = ReverseDirections(directions); }
         }
 
-        protected static int[][] Oppisite(int[][] originalDirection)
+        protected static int[][] ReverseDirections(int[][] originalDirection)
         {
             int[][] oppisiteDirection = new int[originalDirection.Length][];
             for (int i = 0; i < originalDirection.Length; i++)
@@ -33,9 +33,9 @@ namespace CHESS.pieces.Movements
             }
             return oppisiteDirection;
         }
-        internal override List<int[]> GetMoves(int[] origin, bool repeat)
+        internal override List<int[]> GetMoves(int[] origin, int repeat)
         {
-            return MoveRegular(origin, this.movement, repeat);
+            return GetMoves(origin, this.movement, repeat);
         }
 
 
